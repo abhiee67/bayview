@@ -10,6 +10,8 @@ interface ButtonProps {
   href?: string;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -19,6 +21,8 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   className,
   onClick,
+  disabled = false,
+  type = 'button',
   ...rest
 }) => {
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-2xl transition-all duration-300';
@@ -56,7 +60,7 @@ export const Button: React.FC<ButtonProps> = ({
   }
   
   return (
-    <button className={classes} onClick={onClick} {...rest}>
+    <button type={type} className={classes} onClick={onClick} disabled={disabled} {...rest}>
       {children}
     </button>
   );
