@@ -4,11 +4,39 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Main Pages
 import Index from "./pages/Index";
 import About from "./pages/About";
 import PlanYourEvent from "./pages/PlanYourEvent";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+
+// About Us Section Pages
+import Team from "./pages/about/Team";
+import Awards from "./pages/about/Awards";
+import Testimonials from "./pages/about/Testimonials";
+
+// Plan Your Event Section Pages
+import AmenitiesAV from "./pages/plan/AmenitiesAV";
+import Catering from "./pages/plan/Catering";
+import Packages from "./pages/plan/Packages";
+import Enquiry from "./pages/plan/Enquiry";
+
+// Events Section Pages
+import UpcomingEvents from "./pages/events/UpcomingEvents";
+import PastEvents from "./pages/events/PastEvents";
+import Gallery from "./pages/events/Gallery";
+
+// Visit Us Section Pages
+import GettingHere from "./pages/visit/GettingHere";
+import DiningStay from "./pages/visit/DiningStay";
+import ParkingAccessibility from "./pages/visit/ParkingAccessibility";
+
+// Discover Vizag Section Pages
+import LocalAttractions from "./pages/discover/LocalAttractions";
+import Shopping from "./pages/discover/Shopping";
+import ShortTrips from "./pages/discover/ShortTrips";
 
 const queryClient = new QueryClient();
 
@@ -19,11 +47,41 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Main Pages */}
           <Route path="/" element={<Index />} />
+          
+          {/* About Us Section */}
           <Route path="/about" element={<About />} />
+          <Route path="/about/team" element={<Team />} />
+          <Route path="/about/awards" element={<Awards />} />
+          <Route path="/about/testimonials" element={<Testimonials />} />
+          
+          {/* Plan Your Event Section */}
           <Route path="/plan-your-event" element={<PlanYourEvent />} />
+          <Route path="/plan-your-event/amenities" element={<AmenitiesAV />} />
+          <Route path="/plan-your-event/catering" element={<Catering />} />
+          <Route path="/plan-your-event/packages" element={<Packages />} />
+          <Route path="/plan-your-event/enquiry" element={<Enquiry />} />
+          
+          {/* Events Section */}
+          <Route path="/events" element={<UpcomingEvents />} />
+          <Route path="/events/past" element={<PastEvents />} />
+          <Route path="/events/gallery" element={<Gallery />} />
+          
+          {/* Visit Us Section */}
+          <Route path="/visit" element={<GettingHere />} />
+          <Route path="/visit/dining-stay" element={<DiningStay />} />
+          <Route path="/visit/parking" element={<ParkingAccessibility />} />
+          
+          {/* Discover Vizag Section */}
+          <Route path="/discover" element={<LocalAttractions />} />
+          <Route path="/discover/shopping" element={<Shopping />} />
+          <Route path="/discover/trips" element={<ShortTrips />} />
+          
+          {/* Contact Page */}
           <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* 404 Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
