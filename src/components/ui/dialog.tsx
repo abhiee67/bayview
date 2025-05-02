@@ -3,7 +3,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "../ui/Button"
+import { Button } from "@/components/ui/Button"
 
 const Dialog = DialogPrimitive.Root
 
