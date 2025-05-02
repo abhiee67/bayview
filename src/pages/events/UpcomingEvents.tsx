@@ -3,7 +3,7 @@ import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Calendar } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/Button'; // Changed from @/components/ui/button
 
 const UpcomingEvents = () => {
   const events = [

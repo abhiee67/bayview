@@ -4,7 +4,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "./Button"
+import { buttonVariants } from "../ui/Button" // Changed from "./Button"
 
 const Dialog = DialogPrimitive.Root
 
