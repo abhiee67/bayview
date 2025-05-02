@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
@@ -7,7 +8,7 @@ const Awards = () => {
     year: 2023,
     title: "India's Best Convention Center",
     organization: "Hospitality Excellence Awards",
-    image: "https://images.unsplash.com/photo-1618411640018-972400a01816?ixlib=rb-4.0.3",
+    image: "/lovable-uploads/b7bd684c-9699-4fe9-b0d4-f5551e279b54.png",
     description: "Recognized for outstanding event management and customer satisfaction."
   }, {
     year: 2022,

@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Utensils } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/Button';
 
 const Catering = () => {
   const cuisineTypes = [
