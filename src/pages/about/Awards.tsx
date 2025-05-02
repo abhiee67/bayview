@@ -1,57 +1,46 @@
-
 import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Award } from 'lucide-react';
-
 const Awards = () => {
-  const awards = [
-    {
-      year: 2023,
-      title: "India's Best Convention Center",
-      organization: "Hospitality Excellence Awards",
-      image: "https://images.unsplash.com/photo-1618411640018-972400a01816?ixlib=rb-4.0.3",
-      description: "Recognized for outstanding event management and customer satisfaction."
-    },
-    {
-      year: 2022,
-      title: "Best Wedding Venue - South India",
-      organization: "Wedding Planners Association of India",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3",
-      description: "Award for exceptional service in hosting luxury wedding events."
-    },
-    {
-      year: 2022,
-      title: "Green Building Certification",
-      organization: "Indian Green Building Council",
-      image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3",
-      description: "Platinum rating for sustainable architecture and eco-friendly operations."
-    },
-    {
-      year: 2021,
-      title: "Best Technical Infrastructure",
-      organization: "Events Technology Awards",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
-      description: "Recognized for state-of-the-art audiovisual and conference technologies."
-    },
-    {
-      year: 2020,
-      title: "Tourism Impact Award",
-      organization: "Andhra Pradesh Tourism Department",
-      image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3",
-      description: "For significant contribution to Vizag's tourism development."
-    },
-    {
-      year: 2019,
-      title: "Culinary Excellence Award",
-      organization: "Food Critics Association",
-      image: "https://images.unsplash.com/photo-1564631027894-5bdb17618445?ixlib=rb-4.0.3",
-      description: "For exceptional catering services and innovative menu offerings."
-    },
-  ];
-
-  return (
-    <MainLayout>
+  const awards = [{
+    year: 2023,
+    title: "India's Best Convention Center",
+    organization: "Hospitality Excellence Awards",
+    image: "https://images.unsplash.com/photo-1618411640018-972400a01816?ixlib=rb-4.0.3",
+    description: "Recognized for outstanding event management and customer satisfaction."
+  }, {
+    year: 2022,
+    title: "Best Wedding Venue - South India",
+    organization: "Wedding Planners Association of India",
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3",
+    description: "Award for exceptional service in hosting luxury wedding events."
+  }, {
+    year: 2022,
+    title: "Green Building Certification",
+    organization: "Indian Green Building Council",
+    image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3",
+    description: "Platinum rating for sustainable architecture and eco-friendly operations."
+  }, {
+    year: 2021,
+    title: "Best Technical Infrastructure",
+    organization: "Events Technology Awards",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3",
+    description: "Recognized for state-of-the-art audiovisual and conference technologies."
+  }, {
+    year: 2020,
+    title: "Tourism Impact Award",
+    organization: "Andhra Pradesh Tourism Department",
+    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?ixlib=rb-4.0.3",
+    description: "For significant contribution to Vizag's tourism development."
+  }, {
+    year: 2019,
+    title: "Culinary Excellence Award",
+    organization: "Food Critics Association",
+    image: "https://images.unsplash.com/photo-1564631027894-5bdb17618445?ixlib=rb-4.0.3",
+    description: "For exceptional catering services and innovative menu offerings."
+  }];
+  return <MainLayout>
       <div className="pt-20">
         {/* Page Header */}
         <div className="bg-maroon py-16 md:py-24">
@@ -79,14 +68,9 @@ const Awards = () => {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {awards.map((award, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              {awards.map((award, index) => <div key={index} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="h-48 overflow-hidden">
-                    <img 
-                      src={award.image} 
-                      alt={award.title} 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={award.image} alt={award.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-6">
                     <span className="inline-block px-3 py-1 rounded-full bg-apricot text-maroon font-medium mb-3">
@@ -98,16 +82,13 @@ const Awards = () => {
                     </p>
                     <p className="text-maroon/70">{award.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
         
         <CallToAction />
       </div>
-    </MainLayout>
-  );
+    </MainLayout>;
 };
-
 export default Awards;
