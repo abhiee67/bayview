@@ -3,7 +3,7 @@ import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Calendar } from 'lucide-react';
-import { Button } from '../../components/ui/Button'; // Changed from @/components/ui/button
+import { Button } from '../../components/ui/Button';
 
 const UpcomingEvents = () => {
   const events = [
@@ -14,7 +14,7 @@ const UpcomingEvents = () => {
       category: "Conference",
       description: "Join industry leaders and innovators for this three-day conference focused on global business trends and opportunities.",
       venue: "Grand Ballroom",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
     {
       title: "Annual Tech Summit",
@@ -23,7 +23,7 @@ const UpcomingEvents = () => {
       category: "Summit",
       description: "Explore the latest in technology innovation with keynote speakers from leading tech companies around the world.",
       venue: "Conference Center",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
     {
       title: "Summer Wedding Expo",
@@ -32,7 +32,7 @@ const UpcomingEvents = () => {
       category: "Exhibition",
       description: "Discover the latest wedding trends, meet top vendors, and find inspiration for your perfect day.",
       venue: "Beach Lawn & Celebration Hall",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
     {
       title: "Coastal Cuisine Festival",
@@ -41,7 +41,7 @@ const UpcomingEvents = () => {
       category: "Food Festival",
       description: "Celebrate the flavors of coastal Andhra with chef demonstrations, tastings, and special dinners.",
       venue: "Garden Terrace",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
     {
       title: "Corporate Leadership Forum",
@@ -50,7 +50,7 @@ const UpcomingEvents = () => {
       category: "Corporate",
       description: "A premier networking event for C-suite executives featuring workshops and panel discussions.",
       venue: "Bay View Room",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
     {
       title: "Classical Music Concert",
@@ -59,7 +59,7 @@ const UpcomingEvents = () => {
       category: "Concert",
       description: "An evening of classical music performed by the renowned Symphony Orchestra.",
       venue: "Grand Ballroom",
-      ticketUrl: "#"
+      ticketUrl: "/events/bookings"
     },
   ];
 
@@ -135,7 +135,7 @@ const UpcomingEvents = () => {
                       </svg>
                       <span>{event.venue}</span>
                     </div>
-                    <Button variant="secondary" href={event.ticketUrl} className="w-full">
+                    <Button href={event.ticketUrl} variant="secondary" className="w-full">
                       Book Tickets
                     </Button>
                   </div>

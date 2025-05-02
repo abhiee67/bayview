@@ -27,7 +27,14 @@ import Enquiry from "./pages/plan/Enquiry";
 // Events Section Pages
 import UpcomingEvents from "./pages/events/UpcomingEvents";
 import PastEvents from "./pages/events/PastEvents";
+import PastEventsPage2 from "./pages/events/PastEventsPage2";
+import PastEventsPage3 from "./pages/events/PastEventsPage3";
 import Gallery from "./pages/events/Gallery";
+import TechSummit from "./pages/events/TechSummit";
+import WeddingExpo from "./pages/events/WeddingExpo";
+import MedicalConference from "./pages/events/MedicalConference";
+import FoodFestival from "./pages/events/FoodFestival";
+import Bookings from "./pages/events/Bookings";
 
 // Visit Us Section Pages
 import GettingHere from "./pages/visit/GettingHere";
@@ -103,7 +110,14 @@ const App = () => (
           {/* Events Section */}
           <Route path="/events" element={<UpcomingEvents />} />
           <Route path="/events/past" element={<PastEvents />} />
+          <Route path="/events/past/page2" element={<PastEventsPage2 />} />
+          <Route path="/events/past/page3" element={<PastEventsPage3 />} />
           <Route path="/events/gallery" element={<Gallery />} />
+          <Route path="/events/tech-summit" element={<TechSummit />} />
+          <Route path="/events/wedding-expo" element={<WeddingExpo />} />
+          <Route path="/events/medical-conference" element={<MedicalConference />} />
+          <Route path="/events/food-festival" element={<FoodFestival />} />
+          <Route path="/events/bookings" element={<Bookings />} />
           
           {/* Visit Us Section */}
           <Route path="/visit" element={<GettingHere />} />

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Compass } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
 
 const LocalAttractions = () => {
   const categories = ["All", "Beaches", "Hills", "Museums", "Religious", "Parks"];
@@ -185,10 +184,6 @@ const LocalAttractions = () => {
                         <span className="text-maroon/70">{attraction.bestTime}</span>
                       </div>
                     </div>
-                    
-                    <Button variant="outline" size="sm" className="w-full">
-                      Get Directions
-                    </Button>
                   </div>
                 </div>
               ))}

@@ -1,57 +1,11 @@
+
 import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/Button';
 
 const GettingHere = () => {
-  const transportOptions = [
-    {
-      icon: "✈️",
-      title: "By Air",
-      description: "Visakhapatnam International Airport is just 20 minutes away from Bayview Convention Centre.",
-      details: [
-        "Direct flights from major cities like Delhi, Mumbai, Bangalore, and Chennai",
-        "International connections via Singapore, Dubai, and Bangkok",
-        "Airport taxi services available 24/7",
-        "Pre-arranged pickup service available for event delegates"
-      ]
-    },
-    {
-      icon: "🚆",
-      title: "By Train",
-      description: "Visakhapatnam Railway Station is well-connected to all major cities in India.",
-      details: [
-        "10 km from the convention centre (approximately 25-minute drive)",
-        "Regular trains from Howrah, Chennai, Hyderabad, and Bangalore",
-        "Auto-rickshaws and taxis available outside the station",
-        "App-based cab services operate throughout the city"
-      ]
-    },
-    {
-      icon: "🚌",
-      title: "By Road",
-      description: "Excellent connectivity via NH16 (Chennai-Kolkata Highway).",
-      details: [
-        "Well-maintained roads connecting major cities",
-        "Regular bus services from nearby cities",
-        "APSRTC buses available from different parts of Andhra Pradesh",
-        "Private bus operators offer luxury coach services"
-      ]
-    },
-    {
-      icon: "🚕",
-      title: "Local Transport",
-      description: "Multiple options for moving around Vizag.",
-      details: [
-        "App-based ride services (Uber, Ola)",
-        "Local city buses with stops near the venue",
-        "Auto-rickshaws available throughout the city",
-        "Car rental services for longer stays"
-      ]
-    }
-  ];
-
   return (
     <MainLayout>
       <div className="pt-20">
@@ -69,103 +23,90 @@ const GettingHere = () => {
           </div>
         </div>
         
-        {/* Getting Here Section */}
+        {/* Map Section */}
         <section className="py-16 bg-cream">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex items-center gap-3 mb-6">
               <MapPin className="text-maroon h-8 w-8" />
-              <h2 className="text-3xl font-serif text-maroon">Your Journey to Bayview</h2>
+              <h2 className="text-3xl font-serif text-maroon">Find Your Way to Bayview</h2>
             </div>
             <p className="text-lg text-maroon/80 max-w-3xl mb-12">
-              Bayview Convention Centre is strategically located on Beach Road in Vizag, offering convenient access for both local and international visitors. Here's how you can reach us from various departure points.
+              Located in the heart of Visakhapatnam with stunning views of the Bay of Bengal, Bayview Convention Centre is easily accessible by various modes of transportation.
             </p>
             
-            {/* Map Section - Using Google Maps Embed */}
-            <div className="bg-white rounded-2xl shadow-md overflow-hidden mb-16">
-              <div className="h-96">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30459.91554248905!2d83.30801772599811!3d17.73540397297964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a395bedc7efb603%3A0x22af19f07b6bb5ed!2sBeach%20Rd%2C%20Visakhapatnam%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1714958246371!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Bayview Convention Centre Location"
-                ></iframe>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-maroon mb-3">Bayview Convention Centre</h3>
-                <p className="text-maroon/80 mb-3">
-                  Beach Road, Vizag, Andhra Pradesh, India
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Button variant="secondary" size="sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Get Directions
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                    </svg>
-                    Share Location
-                  </Button>
-                </div>
-              </div>
+            {/* Google Map */}
+            <div className="w-full h-[500px] rounded-2xl overflow-hidden mb-12 shadow-lg">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121394.66532448962!2d83.17905555673361!3d17.734900571545635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39431389e6973f%3A0x92d9c20395498468!2sVisakhapatnam%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1688456791396!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{border: 0}} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Bayview Convention Centre Location"
+              ></iframe>
             </div>
             
-            {/* Transport Options */}
-            <h3 className="text-2xl font-serif text-maroon mb-8">Transport Options</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {transportOptions.map((option, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-3xl">{option.icon}</div>
-                    <h4 className="text-xl font-semibold text-maroon">{option.title}</h4>
-                  </div>
-                  <p className="text-maroon/80 mb-4">{option.description}</p>
-                  <ul className="space-y-2">
-                    {option.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="text-gold mr-2">•</span>
-                        <span className="text-maroon/70">{detail}</span>
-                      </li>
-                    ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+              <div>
+                <h3 className="text-2xl font-serif text-maroon mb-4">Address</h3>
+                <div className="bg-white p-6 rounded-2xl shadow-md mb-8">
+                  <p className="mb-1">Bayview Convention Centre</p>
+                  <p className="mb-1">Beach Road, R.K. Beach</p>
+                  <p className="mb-1">Visakhapatnam - 530003</p>
+                  <p className="mb-1">Andhra Pradesh, India</p>
+                  <p className="mt-4">
+                    <strong>Phone:</strong> +91 891 2754 800
+                  </p>
+                  <p>
+                    <strong>Email:</strong> info@bayviewvizag.com
+                  </p>
+                </div>
+                
+                <h3 className="text-2xl font-serif text-maroon mb-4">Nearby Landmarks</h3>
+                <div className="bg-white p-6 rounded-2xl shadow-md">
+                  <ul className="list-disc list-inside space-y-2 text-maroon/80">
+                    <li>2 km from R.K. Beach</li>
+                    <li>5 km from Visakhapatnam Railway Station</li>
+                    <li>15 km from Visakhapatnam International Airport</li>
+                    <li>3 km from Submarine Museum</li>
+                    <li>10 km from Kailasagiri Hill Park</li>
                   </ul>
                 </div>
-              ))}
-            </div>
-            
-            {/* Travel Times */}
-            <div className="bg-apricot/50 rounded-2xl p-6 md:p-8 mt-12">
-              <h3 className="text-2xl font-serif text-maroon mb-6">Estimated Travel Times</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From Airport</h4>
-                  <p className="text-maroon/70">20-25 minutes (10 km)</p>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From Railway Station</h4>
-                  <p className="text-maroon/70">25-30 minutes (10 km)</p>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From City Center</h4>
-                  <p className="text-maroon/70">15-20 minutes (5 km)</p>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From Bus Terminal</h4>
-                  <p className="text-maroon/70">30-35 minutes (12 km)</p>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From RK Beach</h4>
-                  <p className="text-maroon/70">5-10 minutes (2 km)</p>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <h4 className="font-semibold text-maroon mb-2">From IT Park</h4>
-                  <p className="text-maroon/70">35-40 minutes (15 km)</p>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-serif text-maroon mb-4">Transportation Options</h3>
+                
+                <div className="space-y-6">
+                  <div className="bg-white p-6 rounded-2xl shadow-md">
+                    <h4 className="text-lg font-medium text-maroon mb-2">By Air</h4>
+                    <p className="text-maroon/80">
+                      Visakhapatnam International Airport is well-connected to major cities across India with regular flights from Delhi, Mumbai, Bangalore, Chennai, and Hyderabad. International connections include Singapore, Dubai, and Kuala Lumpur.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-2xl shadow-md">
+                    <h4 className="text-lg font-medium text-maroon mb-2">By Train</h4>
+                    <p className="text-maroon/80">
+                      Visakhapatnam Railway Station is a major junction on the East Coast Railway line with excellent connectivity to all major cities in India. Premium trains like Rajdhani, Shatabdi, and Duronto have stops here.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-2xl shadow-md">
+                    <h4 className="text-lg font-medium text-maroon mb-2">By Road</h4>
+                    <p className="text-maroon/80">
+                      Visakhapatnam is well-connected by national highways. Regular bus services operate from neighboring cities and states. The venue is accessible via NH-16 (formerly NH-5), which runs through the city.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-6 rounded-2xl shadow-md">
+                    <h4 className="text-lg font-medium text-maroon mb-2">Local Transportation</h4>
+                    <p className="text-maroon/80">
+                      Taxis, auto-rickshaws, and ride-sharing services are readily available throughout the city. The city also has an efficient public bus system operated by APSRTC.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
