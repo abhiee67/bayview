@@ -3,7 +3,7 @@ import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Utensils } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const Catering = () => {
   const cuisineTypes = [
@@ -123,17 +123,7 @@ const Catering = () => {
               ))}
             </div>
             
-            {/* Custom Menus */}
-            <div className="bg-apricot/50 rounded-2xl p-6 md:p-8">
-              <h3 className="text-2xl font-serif text-maroon mb-4">Custom Menus</h3>
-              <p className="text-maroon/80 mb-6">
-                Our executive chef is available to create customized menus tailored to your specific event needs. From dietary requirements to themed experiences, we'll work with you to craft the perfect dining solution.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button variant="primary" href="/plan-your-event/enquiry">Request Custom Menu</Button>
-                <Button variant="outline">Download Sample Menus</Button>
-              </div>
-            </div>
+            {/* Custom Menus section removed as requested */}
           </div>
         </section>
         

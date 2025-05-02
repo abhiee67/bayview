@@ -13,11 +13,15 @@ export const buttonVariants = cva(
         secondary: 'bg-gold text-maroon hover:bg-gold/90 shadow-md hover:shadow-lg',
         outline: 'border-2 border-maroon text-maroon hover:bg-maroon/5',
         ghost: 'text-maroon hover:bg-maroon/5',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
       },
       size: {
         sm: 'text-sm px-3 py-1.5',
         md: 'text-base px-5 py-2',
         lg: 'text-lg px-6 py-3',
+        default: 'h-10 px-4 py-2',
+        icon: 'h-10 w-10',
       },
     },
     defaultVariants: {
@@ -29,13 +33,15 @@ export const buttonVariants = cva(
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'default' | 'destructive';
+  size?: 'sm' | 'md' | 'lg' | 'default' | 'icon';
   href?: string;
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  asChild?: boolean;
+  [key: string]: any; // Allow other props to be passed through
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -47,6 +53,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
   type = 'button',
+  asChild = false,
   ...rest
 }) => {
   const classes = cn(buttonVariants({ variant, size }), className);
@@ -69,3 +76,6 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export { Button as default, buttonVariants as buttonVariantsDuplicate };
+

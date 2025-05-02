@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 
 // Main Pages
 import Index from "./pages/Index";
@@ -38,6 +39,41 @@ import LocalAttractions from "./pages/discover/LocalAttractions";
 import Shopping from "./pages/discover/Shopping";
 import ShortTrips from "./pages/discover/ShortTrips";
 
+// Auto-scroll functionality
+const ScrollToTop = () => {
+  useEffect(() => {
+    // Smooth scroll to top when route changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Enable smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+    
+    // Add smooth scrolling behavior to the entire document
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    return () => {
+      // Clean up
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
+
+  return null;
+};
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -46,6 +82,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Main Pages */}
           <Route path="/" element={<Index />} />

@@ -3,7 +3,7 @@ import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { AirVent } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const AmenitiesAV = () => {
   const avEquipment = [
@@ -129,14 +129,13 @@ const AmenitiesAV = () => {
               ))}
             </div>
             
-            {/* Tech Support */}
+            {/* Tech Support - Removed download button as requested */}
             <div className="bg-apricot/50 rounded-2xl p-6 md:p-8 mb-16">
               <h3 className="text-2xl font-serif text-maroon mb-4">Tech Support</h3>
               <p className="text-maroon/80 mb-6">
                 Our in-house team of technical experts is available throughout your event. From setup to execution, our professionals ensure your event runs smoothly, allowing you to focus on your audience rather than equipment.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button variant="primary">Download AV Specifications</Button>
                 <Button variant="outline" href="/plan-your-event/enquiry">Request Custom Setup</Button>
               </div>
             </div>

@@ -80,6 +80,47 @@ const Gallery = () => {
       alt: "Bay View Room sunset view",
       category: "Venues"
     },
+    // New images as requested
+    {
+      src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3",
+      alt: "Bayview Hotel",
+      category: "Venues"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1551279880-03041531948f?ixlib=rb-4.0.3",
+      alt: "Submarine Museum",
+      category: "Attractions"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1606161265315-3eb78bee6dea?ixlib=rb-4.0.3",
+      alt: "Simhachalam Temple",
+      category: "Attractions"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1659461265383-af0ef1162831?ixlib=rb-4.0.3",
+      alt: "Visakha Museum",
+      category: "Attractions"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1518466088889-83ba47e68e6d?ixlib=rb-4.0.3",
+      alt: "Araku Valley",
+      category: "Trips"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1516132006923-6cf348e5dee2?ixlib=rb-4.0.3",
+      alt: "Fishermen's Market",
+      category: "Shopping"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1510465756207-4b0c6add3a16?ixlib=rb-4.0.3",
+      alt: "Borra Caves",
+      category: "Trips"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1528041119984-da3a9f8d04d1?ixlib=rb-4.0.3",
+      alt: "General view of Vizag",
+      category: "Venues"
+    }
   ];
   
   const videos = [
@@ -105,7 +146,7 @@ const Gallery = () => {
     }
   ];
   
-  const categories = ["All", "Venues", "Weddings", "Conferences", "Exhibitions", "Celebrations", "Corporate", "Food"];
+  const categories = ["All", "Venues", "Weddings", "Conferences", "Exhibitions", "Celebrations", "Corporate", "Food", "Attractions", "Shopping", "Trips"];
   const [activeCategory, setActiveCategory] = useState("All");
   
   const filteredPhotos = activeCategory === "All" ? 
@@ -114,7 +155,7 @@ const Gallery = () => {
 
   return (
     <MainLayout>
-      <div className="pt-20">
+      <div className="pt-20 scroll-smooth">
         {/* Page Header */}
         <div className="bg-maroon py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">

@@ -3,7 +3,7 @@ import React from 'react';
 import { MainLayout } from '../../layouts/MainLayout';
 import { CallToAction } from '../../components/home/CallToAction';
 import { Calendar } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const UpcomingEvents = () => {
   const events = [
@@ -46,7 +46,7 @@ const UpcomingEvents = () => {
     {
       title: "Corporate Leadership Forum",
       date: "August 22, 2025",
-      image: "https://images.unsplash.com/photo-1560523159-4a9692d222f9?ixlib=rb-4.0.3",
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3",
       category: "Corporate",
       description: "A premier networking event for C-suite executives featuring workshops and panel discussions.",
       venue: "Bay View Room",
