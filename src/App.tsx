@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 // Main Pages
@@ -48,35 +48,47 @@ import ShortTrips from "./pages/discover/ShortTrips";
 
 // Auto-scroll functionality
 const ScrollToTop = () => {
+  const location = useLocation();
+  
   useEffect(() => {
-    // Smooth scroll to top when route changes
+    // Scroll to top when route changes
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Enable smooth scrolling for all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId !== '#') {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }
-      });
-    });
-    
-    // Add smooth scrolling behavior to the entire document
+    // Add scroll behavior for the entire document
     document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Setup smooth scrolling for all anchor links
+    const setupSmoothScrolling = () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+    };
+    
+    // Run setup after DOM is fully loaded
+    if (document.readyState === 'complete') {
+      setupSmoothScrolling();
+    } else {
+      window.addEventListener('load', setupSmoothScrolling);
+      return () => window.removeEventListener('load', setupSmoothScrolling);
+    }
     
     return () => {
       // Clean up
       document.documentElement.style.scrollBehavior = '';
     };
-  }, []);
+  }, [location.pathname]); // Re-run when route changes
 
   return null;
 };
