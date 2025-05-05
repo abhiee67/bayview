@@ -2,48 +2,8 @@
 import React, { useState } from 'react';
 import { SectionHeading } from '../common/SectionHeading';
 import { Phone, Mail, MapPin, Share2 } from 'lucide-react';
-import { Button } from '../ui/Button';
 
 export const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1500);
-  };
-
   return (
     <section className="section-padding bg-cream">
       <div className="container-custom">
@@ -54,95 +14,18 @@ export const ContactForm: React.FC = () => {
               subtitle="We'd love to hear from you"
             />
             
-            {submitSuccess ? (
-              <div className="bg-green-50 border border-green-200 text-green-800 rounded-2xl p-6 animate-fade-in">
-                <h3 className="text-xl font-serif mb-2">Thank You!</h3>
-                <p>Your message has been sent successfully. Our team will get back to you shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block text-maroon/80 mb-1">Full Name*</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border-gold/30 focus:border-gold focus:ring focus:ring-gold/20 bg-white p-3"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-maroon/80 mb-1">Email Address*</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border-gold/30 focus:border-gold focus:ring focus:ring-gold/20 bg-white p-3"
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="phone" className="block text-maroon/80 mb-1">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border-gold/30 focus:border-gold focus:ring focus:ring-gold/20 bg-white p-3"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-maroon/80 mb-1">Subject*</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border-gold/30 focus:border-gold focus:ring focus:ring-gold/20 bg-white p-3"
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                      <option value="Venue Booking">Venue Booking</option>
-                      <option value="Event Planning">Event Planning</option>
-                      <option value="Catering Services">Catering Services</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-maroon/80 mb-1">Message*</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border-gold/30 focus:border-gold focus:ring focus:ring-gold/20 bg-white p-3"
-                  ></textarea>
-                </div>
-                
-                <div>
-                  <Button
-                    className="w-full sm:w-auto"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </div>
-              </form>
-            )}
+            {/* Fillout Form Embed */}
+            <div className="w-full h-[600px] overflow-hidden rounded-xl">
+              <iframe
+                src="https://forms.fillout.com/t/nens35LQkKus"
+                width="100%"
+                height="100%"
+                style={{ border: "none" }}
+                allow="camera; microphone; autoplay; encrypted-media;"
+                allowFullScreen
+                title="Contact Form"
+              ></iframe>
+            </div>
           </div>
           
           <div>
