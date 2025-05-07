@@ -28,6 +28,15 @@ export const Hero: React.FC = () => {
             <Button href="/plan-your-event" size="lg">
               Explore Venues
             </Button>
+            <Button 
+              href="https://docs.google.com/spreadsheets/d/e/2PACX-1vR6qHV8Zi2vWlVb_Ahp6TmkGcfPkR6-P4l5fEH-FFSBGyXsgkcsm3TUuWtxGkgQyi2rt0uaBRvueE81/pub?output=csv" 
+              variant="outline" 
+              size="lg" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Venue Availability
+            </Button>
             <Button href="/contact" variant="secondary" size="lg">
               Book Now
             </Button>
