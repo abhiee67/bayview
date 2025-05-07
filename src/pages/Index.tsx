@@ -8,12 +8,14 @@ import { UpcomingEvents } from '../components/home/UpcomingEvents';
 import { VirtualTour } from '../components/home/VirtualTour';
 import { Testimonials } from '../components/home/Testimonials';
 import { CallToAction } from '../components/home/CallToAction';
+import { VenueCalendar } from '../components/home/VenueCalendar';
 
 const Index = () => {
   return (
     <MainLayout>
       <Hero />
       <USPs />
+      <VenueCalendar />
       <AboutPreview />
       <UpcomingEvents />
       <VirtualTour />
