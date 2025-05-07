@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { toast } from 'sonner';
 
 export const VenueCalendar: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,23 +38,67 @@ export const VenueCalendar: React.FC = () => {
     // Initialize calendar after script loads
     script.onload = async () => {
       try {
-        const response = await fetch('https://opensheet.elk.sh/2PACX-1vR6qHV8Zi2vWlVb_Ahp6TmkGcfPkR6-P4l5fEH-FFSBGyXsgkcsm3TUuWtxGkgQyi2rt0uaBRvueE81/Sheet1');
-        const data = await response.json();
-
-        const events = data.map((row: any) => ({
-          title: row.Status === 'Booked' ? '🔴 Booked: ' + row.Title : '🟢 Available',
-          start: row.Date,
-          color: row.Status === 'Booked' ? 'red' : 'green'
-        }));
+        // Use Google Sheets direct URL with cache busting
+        const timestamp = new Date().getTime();
+        const response = await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vR6qHV8Zi2vWlVb_Ahp6TmkGcfPkR6-P4l5fEH-FFSBGyXsgkcsm3TUuWtxGkgQyi2rt0uaBRvueE81/pub?output=csv&t=${timestamp}`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        
+        // Parse CSV data
+        const csvText = await response.text();
+        const rows = csvText.split('\n');
+        const headers = rows[0].split(',');
+        
+        // Find the indices for Date, Status, and Title columns
+        const dateIndex = headers.findIndex(h => h.trim() === 'Date');
+        const statusIndex = headers.findIndex(h => h.trim() === 'Status');
+        const titleIndex = headers.findIndex(h => h.trim() === 'Title');
+        
+        if (dateIndex === -1 || statusIndex === -1) {
+          throw new Error('Required columns not found in the CSV data');
+        }
+        
+        // Process the rows into calendar events
+        const events = rows.slice(1).map(row => {
+          const columns = row.split(',');
+          const date = columns[dateIndex]?.trim();
+          const status = columns[statusIndex]?.trim();
+          const title = titleIndex !== -1 ? columns[titleIndex]?.trim() : '';
+          
+          if (!date || !status) return null;
+          
+          return {
+            title: status === 'Booked' ? `🔴 Booked: ${title}` : '🟢 Available',
+            start: date,
+            color: status === 'Booked' ? 'red' : 'green'
+          };
+        }).filter(Boolean);
 
         const calendar = new (window as any).FullCalendar.Calendar(document.getElementById('calendar'), {
           initialView: 'dayGridMonth',
-          events: events
+          events: events,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listMonth'
+          }
         });
 
         calendar.render();
+        toast.success('Calendar loaded successfully');
       } catch (error) {
         console.error('Error loading calendar data:', error);
+        toast.error('Failed to load calendar data. Please try again later.');
+        
+        // Add a simple message to the calendar container
+        if (containerRef.current) {
+          const errorMsg = document.createElement('div');
+          errorMsg.className = 'text-center text-red-500 p-4';
+          errorMsg.textContent = 'Unable to load calendar data. Please try again later.';
+          containerRef.current.appendChild(errorMsg);
+        }
       }
     };
     
