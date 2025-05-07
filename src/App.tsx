@@ -12,6 +12,7 @@ import About from "./pages/About";
 import PlanYourEvent from "./pages/PlanYourEvent";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import VenueAvailability from "./pages/VenueAvailability";
 
 // About Us Section Pages
 import Team from "./pages/about/Team";
@@ -105,6 +106,7 @@ const App = () => (
         <Routes>
           {/* Main Pages */}
           <Route path="/" element={<Index />} />
+          <Route path="/venue-availability" element={<VenueAvailability />} />
           
           {/* About Us Section */}
           <Route path="/about" element={<About />} />

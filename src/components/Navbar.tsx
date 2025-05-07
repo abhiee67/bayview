@@ -72,6 +72,11 @@ export const Navbar: React.FC = () => {
       ],
     },
     {
+      title: 'Venue Availability',
+      path: '/venue-availability',
+      dropdown: null,
+    },
+    {
       title: 'Visit Us',
       path: '/visit',
       dropdown: 'visit',
