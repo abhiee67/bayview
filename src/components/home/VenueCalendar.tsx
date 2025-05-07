@@ -1,81 +1,77 @@
 
 import React, { useEffect, useRef } from 'react';
 
-interface Event {
-  title: string;
-  start: string;
-  color: string;
-}
-
 export const VenueCalendar: React.FC = () => {
-  const calendarRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!calendarRef.current) return;
-
-    // Load the required scripts and CSS
-    const loadFullCalendar = async () => {
-      // Check if FullCalendar is already loaded
-      if (!(window as any).FullCalendar) {
-        // Load CSS
-        const cssLink = document.createElement('link');
-        cssLink.rel = 'stylesheet';
-        cssLink.href = 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css';
-        document.head.appendChild(cssLink);
-        
-        // Load JS
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js';
-        script.async = true;
-        
-        // Wait for script to load
-        await new Promise((resolve) => {
-          script.onload = resolve;
-          document.body.appendChild(script);
-        });
+    if (!containerRef.current) return;
+    
+    // Add calendar container
+    const calendarDiv = document.createElement('div');
+    calendarDiv.id = 'calendar';
+    containerRef.current.appendChild(calendarDiv);
+    
+    // Add stylesheet
+    const styleLink = document.createElement('link');
+    styleLink.href = 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css';
+    styleLink.rel = 'stylesheet';
+    document.head.appendChild(styleLink);
+    
+    // Add custom styles
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      #calendar {
+        max-width: 900px;
+        margin: 40px auto;
+        font-family: Arial, sans-serif;
       }
-
-      // Fetch event data
+    `;
+    document.head.appendChild(styleElement);
+    
+    // Load FullCalendar script
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js';
+    script.async = true;
+    
+    // Initialize calendar after script loads
+    script.onload = async () => {
       try {
-        const res = await fetch('https://opensheet.elk.sh/1HxFUHYy7dKCUhFATVZg85oD4oa0LXMKz8FW-W8oIk6Y/Sheet1');
-        const data = await res.json();
+        const response = await fetch('https://opensheet.elk.sh/2PACX-1vR6qHV8Zi2vWlVb_Ahp6TmkGcfPkR6-P4l5fEH-FFSBGyXsgkcsm3TUuWtxGkgQyi2rt0uaBRvueE81/Sheet1');
+        const data = await response.json();
 
-        const events: Event[] = data.map((row: any) => ({
-          title: row.Status === 'Booked' ? '🔴 Booked' : '🟢 Available',
+        const events = data.map((row: any) => ({
+          title: row.Status === 'Booked' ? '🔴 Booked: ' + row.Title : '🟢 Available',
           start: row.Date,
           color: row.Status === 'Booked' ? 'red' : 'green'
         }));
 
-        // Initialize calendar once data is fetched
-        const calendar = new (window as any).FullCalendar.Calendar(calendarRef.current, {
+        const calendar = new (window as any).FullCalendar.Calendar(document.getElementById('calendar'), {
           initialView: 'dayGridMonth',
-          events: events,
-          height: 'auto',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,dayGridWeek'
-          }
+          events: events
         });
 
         calendar.render();
       } catch (error) {
-        console.error('Error fetching calendar data:', error);
+        console.error('Error loading calendar data:', error);
       }
     };
-
-    loadFullCalendar();
-
+    
+    document.body.appendChild(script);
+    
     // Cleanup function
     return () => {
-      // Clean up any listeners if necessary
+      document.head.removeChild(styleLink);
+      document.head.removeChild(styleElement);
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-12 bg-white rounded-lg shadow-lg p-4">
-      <h2 className="text-2xl font-serif text-center text-maroon mb-6">Function Hall Booking Calendar</h2>
-      <div ref={calendarRef} className="w-full"></div>
+    <div className="w-full max-w-5xl mx-auto my-12 bg-white rounded-lg shadow-lg p-4">
+      <div ref={containerRef}></div>
     </div>
   );
 };
