@@ -13,6 +13,9 @@ import PlanYourEvent from "./pages/PlanYourEvent";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import VenueAvailability from "./pages/VenueAvailability";
+import Hall1 from "./pages/halls/Hall1";
+import Hall2 from "./pages/halls/Hall2";
+import Hall3 from "./pages/halls/Hall3";
 
 // About Us Section Pages
 import Team from "./pages/about/Team";
@@ -107,6 +110,9 @@ const App = () => (
           {/* Main Pages */}
           <Route path="/" element={<Index />} />
           <Route path="/venue-availability" element={<VenueAvailability />} />
+          <Route path="/venue-availability/hall-1" element={<Hall1 />} />
+          <Route path="/venue-availability/hall-2" element={<Hall2 />} />
+          <Route path="/venue-availability/hall-3" element={<Hall3 />} />
           
           {/* About Us Section */}
           <Route path="/about" element={<About />} />

@@ -4,6 +4,8 @@ import { MainLayout } from '../layouts/MainLayout';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { VenueCalendar } from '../components/home/VenueCalendar';
 import { Calendar } from 'lucide-react';
+import { Button } from '../components/ui/Button';
+import { Link } from 'react-router-dom';
 
 const VenueAvailability = () => {
   return (
@@ -17,6 +19,34 @@ const VenueAvailability = () => {
             center
           />
         </div>
+        
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <Button 
+            variant="primary" 
+            size="lg" 
+            as={Link}
+            to="/venue-availability/hall-1"
+          >
+            Hall 1
+          </Button>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            as={Link}
+            to="/venue-availability/hall-2"
+          >
+            Hall 2
+          </Button>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            as={Link}
+            to="/venue-availability/hall-3"
+          >
+            Hall 3
+          </Button>
+        </div>
+        
         <p className="text-center mb-8 max-w-2xl mx-auto">
           Our interactive calendar displays the current booking status of our venues.
           <span className="block mt-2">
@@ -27,6 +57,9 @@ const VenueAvailability = () => {
           </span>
           <span className="block mt-2 text-sm text-gray-600">
             The calendar is updated in real-time with our booking system.
+          </span>
+          <span className="block mt-4 font-medium">
+            Select a specific hall above to view its dedicated availability calendar.
           </span>
         </p>
         <VenueCalendar />
