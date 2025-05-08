@@ -1,16 +1,22 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 export const VenueCalendar: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [key, setKey] = useState(Date.now());
 
   useEffect(() => {
     if (!containerRef.current) return;
     
+    // Clear existing calendar if any
+    while (containerRef.current.firstChild) {
+      containerRef.current.removeChild(containerRef.current.firstChild);
+    }
+    
     // Add calendar container
     const calendarDiv = document.createElement('div');
-    calendarDiv.id = 'calendar';
+    calendarDiv.id = `main-calendar-${key}`;
     containerRef.current.appendChild(calendarDiv);
     
     // Add stylesheet
@@ -22,7 +28,7 @@ export const VenueCalendar: React.FC = () => {
     // Add custom styles
     const styleElement = document.createElement('style');
     styleElement.textContent = `
-      #calendar {
+      #main-calendar-${key} {
         max-width: 900px;
         margin: 40px auto;
         font-family: Arial, sans-serif;
@@ -76,18 +82,22 @@ export const VenueCalendar: React.FC = () => {
           };
         }).filter(Boolean);
 
-        const calendar = new (window as any).FullCalendar.Calendar(document.getElementById('calendar'), {
-          initialView: 'dayGridMonth',
-          events: events,
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,listMonth'
-          }
-        });
+        if ((window as any).FullCalendar) {
+          const calendar = new (window as any).FullCalendar.Calendar(document.getElementById(`main-calendar-${key}`), {
+            initialView: 'dayGridMonth',
+            events: events,
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,listMonth'
+            }
+          });
 
-        calendar.render();
-        toast.success('Calendar loaded successfully');
+          calendar.render();
+          toast.success('Calendar loaded successfully');
+        } else {
+          throw new Error('FullCalendar is not loaded');
+        }
       } catch (error) {
         console.error('Error loading calendar data:', error);
         toast.error('Failed to load calendar data. Please try again later.');
@@ -106,13 +116,17 @@ export const VenueCalendar: React.FC = () => {
     
     // Cleanup function
     return () => {
-      document.head.removeChild(styleLink);
-      document.head.removeChild(styleElement);
+      if (document.head.contains(styleLink)) {
+        document.head.removeChild(styleLink);
+      }
+      if (document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
       if (script.parentNode) {
         document.body.removeChild(script);
       }
     };
-  }, []);
+  }, [key]);
 
   return (
     <div className="w-full max-w-5xl mx-auto my-12 bg-white rounded-lg shadow-lg p-4">

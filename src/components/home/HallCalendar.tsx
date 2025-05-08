@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 interface HallCalendarProps {
@@ -9,13 +9,24 @@ interface HallCalendarProps {
 
 export const HallCalendar: React.FC<HallCalendarProps> = ({ hallName, spreadsheetUrl }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [key, setKey] = useState(Date.now());
+  
+  // Force a re-render when the spreadsheetUrl changes
+  useEffect(() => {
+    setKey(Date.now());
+  }, [spreadsheetUrl]);
 
   useEffect(() => {
     if (!containerRef.current) return;
     
+    // Clear existing calendar if any
+    while (containerRef.current.firstChild) {
+      containerRef.current.removeChild(containerRef.current.firstChild);
+    }
+    
     // Add calendar container
     const calendarDiv = document.createElement('div');
-    calendarDiv.id = 'calendar';
+    calendarDiv.id = `calendar-${key}`;
     containerRef.current.appendChild(calendarDiv);
     
     // Add stylesheet
@@ -27,7 +38,7 @@ export const HallCalendar: React.FC<HallCalendarProps> = ({ hallName, spreadshee
     // Add custom styles
     const styleElement = document.createElement('style');
     styleElement.textContent = `
-      #calendar {
+      #calendar-${key} {
         max-width: 900px;
         margin: 40px auto;
         font-family: Arial, sans-serif;
@@ -81,18 +92,22 @@ export const HallCalendar: React.FC<HallCalendarProps> = ({ hallName, spreadshee
           };
         }).filter(Boolean);
 
-        const calendar = new (window as any).FullCalendar.Calendar(document.getElementById('calendar'), {
-          initialView: 'dayGridMonth',
-          events: events,
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,listMonth'
-          }
-        });
+        if ((window as any).FullCalendar) {
+          const calendar = new (window as any).FullCalendar.Calendar(document.getElementById(`calendar-${key}`), {
+            initialView: 'dayGridMonth',
+            events: events,
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,listMonth'
+            }
+          });
 
-        calendar.render();
-        toast.success(`${hallName} calendar loaded successfully`);
+          calendar.render();
+          toast.success(`${hallName} calendar loaded successfully`);
+        } else {
+          throw new Error('FullCalendar is not loaded');
+        }
       } catch (error) {
         console.error('Error loading calendar data:', error);
         toast.error(`Failed to load ${hallName} calendar data. Please try again later.`);
@@ -111,13 +126,17 @@ export const HallCalendar: React.FC<HallCalendarProps> = ({ hallName, spreadshee
     
     // Cleanup function
     return () => {
-      document.head.removeChild(styleLink);
-      document.head.removeChild(styleElement);
+      if (document.head.contains(styleLink)) {
+        document.head.removeChild(styleLink);
+      }
+      if (document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
       if (script.parentNode) {
         document.body.removeChild(script);
       }
     };
-  }, [hallName, spreadsheetUrl]);
+  }, [hallName, spreadsheetUrl, key]);
 
   return (
     <div className="w-full max-w-5xl mx-auto my-12 bg-white rounded-lg shadow-lg p-4">
