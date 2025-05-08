@@ -106,19 +106,13 @@ export const HallCalendar: React.FC<HallCalendarProps> = ({ hallName, spreadshee
           calendar.render();
           toast.success(`${hallName} calendar loaded successfully`);
         } else {
-          throw new Error('FullCalendar is not loaded');
+          console.error('FullCalendar is not loaded');
+          // Silent error - don't show any error message
         }
       } catch (error) {
         console.error('Error loading calendar data:', error);
-        toast.error(`Failed to load ${hallName} calendar data. Please try again later.`);
-        
-        // Add a simple message to the calendar container
-        if (containerRef.current) {
-          const errorMsg = document.createElement('div');
-          errorMsg.className = 'text-center text-red-500 p-4';
-          errorMsg.textContent = 'Unable to load calendar data. Please try again later.';
-          containerRef.current.appendChild(errorMsg);
-        }
+        // Don't display error messages to the user anymore
+        // Silent failure - the container will remain empty without error messages
       }
     };
     
