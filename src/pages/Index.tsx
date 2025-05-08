@@ -15,7 +15,7 @@ import { Calendar } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 
 const Index = () => {
-  const [selectedHall, setSelectedHall] = useState<string | null>(null);
+  const [selectedHall, setSelectedHall] = useState<string>('hall1');
   
   // URLs for the Google Sheets data
   const hallUrls = {
@@ -41,13 +41,6 @@ const Index = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button 
-              onClick={() => setSelectedHall(null)}
-              variant={selectedHall === null ? "primary" : "secondary"}
-              size="lg"
-            >
-              All Venues
-            </Button>
             <Button 
               onClick={() => setSelectedHall('hall1')}
               variant={selectedHall === 'hall1' ? "primary" : "secondary"}
@@ -78,9 +71,7 @@ const Index = () => {
             shows available dates.
           </p>
           
-          {selectedHall === null ? (
-            <VenueCalendar />
-          ) : selectedHall === 'hall1' ? (
+          {selectedHall === 'hall1' ? (
             <HallCalendar hallName="Hall 1" spreadsheetUrl={hallUrls.hall1} />
           ) : selectedHall === 'hall2' ? (
             <HallCalendar hallName="Hall 2" spreadsheetUrl={hallUrls.hall2} />
