@@ -2,6 +2,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { useLocation } from 'react-router-dom';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -9,15 +10,20 @@ interface MainLayoutProps {
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children, fullPage = false }) => {
+  const location = useLocation();
+  
   useEffect(() => {
     // Setup smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Scroll to top on page navigation
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     return () => {
       // Cleanup
       document.documentElement.style.scrollBehavior = '';
     };
-  }, []);
+  }, [location.pathname]); // This dependency will trigger the effect on route changes
   
   if (fullPage) {
     return (

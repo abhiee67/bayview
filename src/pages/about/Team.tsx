@@ -46,7 +46,7 @@ const Team = () => {
 
   return (
     <MainLayout>
-      <div className="pt-20">
+      <div className="snap-section-regular">
         {/* Page Header */}
         <div className="bg-maroon py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
@@ -93,7 +93,9 @@ const Team = () => {
           </div>
         </section>
         
-        <CallToAction />
+        <div className="snap-section-regular">
+          <CallToAction />
+        </div>
       </div>
     </MainLayout>
   );
