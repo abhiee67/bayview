@@ -1,13 +1,23 @@
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
 interface MainLayoutProps {
   children: React.ReactNode;
+  fullPage?: boolean;
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ children, fullPage = false }) => {
+  if (fullPage) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+      </div>
+    );
+  }
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

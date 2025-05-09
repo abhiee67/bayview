@@ -3,8 +3,15 @@ import React from 'react';
 import { Button } from '../ui/Button';
 
 export const Hero: React.FC = () => {
+  const scrollToNextSection = () => {
+    const nextSection = document.getElementById('section-1');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -36,11 +43,15 @@ export const Hero: React.FC = () => {
       </div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <button 
+        onClick={scrollToNextSection}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        aria-label="Scroll down"
+      >
         <div className="w-8 h-12 rounded-full border-2 border-cream/50 flex items-start justify-center">
           <div className="w-2 h-3 bg-cream/50 rounded-full mt-2"></div>
         </div>
-      </div>
+      </button>
     </section>
   );
 };

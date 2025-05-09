@@ -12,7 +12,6 @@ import About from "./pages/About";
 import PlanYourEvent from "./pages/PlanYourEvent";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import VenueAvailability from "./pages/VenueAvailability";
 import Hall1 from "./pages/halls/Hall1";
 import Hall2 from "./pages/halls/Hall2";
 import Hall3 from "./pages/halls/Hall3";
@@ -24,7 +23,6 @@ import Testimonials from "./pages/about/Testimonials";
 
 // Plan Your Event Section Pages
 import AmenitiesAV from "./pages/plan/AmenitiesAV";
-import Catering from "./pages/plan/Catering";
 import Packages from "./pages/plan/Packages";
 import Enquiry from "./pages/plan/Enquiry";
 
@@ -44,11 +42,6 @@ import Bookings from "./pages/events/Bookings";
 import GettingHere from "./pages/visit/GettingHere";
 import DiningStay from "./pages/visit/DiningStay";
 import ParkingAccessibility from "./pages/visit/ParkingAccessibility";
-
-// Discover Vizag Section Pages
-import LocalAttractions from "./pages/discover/LocalAttractions";
-import Shopping from "./pages/discover/Shopping";
-import ShortTrips from "./pages/discover/ShortTrips";
 
 // Auto-scroll functionality
 const ScrollToTop = () => {
@@ -109,7 +102,6 @@ const App = () => (
         <Routes>
           {/* Main Pages */}
           <Route path="/" element={<Index />} />
-          <Route path="/venue-availability" element={<VenueAvailability />} />
           <Route path="/venue-availability/hall-1" element={<Hall1 />} />
           <Route path="/venue-availability/hall-2" element={<Hall2 />} />
           <Route path="/venue-availability/hall-3" element={<Hall3 />} />
@@ -123,7 +115,6 @@ const App = () => (
           {/* Plan Your Event Section */}
           <Route path="/plan-your-event" element={<PlanYourEvent />} />
           <Route path="/plan-your-event/amenities" element={<AmenitiesAV />} />
-          <Route path="/plan-your-event/catering" element={<Catering />} />
           <Route path="/plan-your-event/packages" element={<Packages />} />
           <Route path="/plan-your-event/enquiry" element={<Enquiry />} />
           
@@ -143,11 +134,6 @@ const App = () => (
           <Route path="/visit" element={<GettingHere />} />
           <Route path="/visit/dining-stay" element={<DiningStay />} />
           <Route path="/visit/parking" element={<ParkingAccessibility />} />
-          
-          {/* Discover Vizag Section */}
-          <Route path="/discover" element={<LocalAttractions />} />
-          <Route path="/discover/shopping" element={<Shopping />} />
-          <Route path="/discover/trips" element={<ShortTrips />} />
           
           {/* Contact Page */}
           <Route path="/contact" element={<Contact />} />

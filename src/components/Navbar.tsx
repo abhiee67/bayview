@@ -56,7 +56,6 @@ export const Navbar: React.FC = () => {
       items: [
         { title: 'Venues & Layouts', path: '/plan-your-event' },
         { title: 'Amenities & AV', path: '/plan-your-event/amenities' },
-        { title: 'Catering Services', path: '/plan-your-event/catering' },
         { title: 'Packages', path: '/plan-your-event/packages' },
         { title: 'Make an Enquiry', path: '/plan-your-event/enquiry' },
       ],
@@ -72,11 +71,6 @@ export const Navbar: React.FC = () => {
       ],
     },
     {
-      title: 'Venue Availability',
-      path: '/venue-availability',
-      dropdown: null,
-    },
-    {
       title: 'Visit Us',
       path: '/visit',
       dropdown: 'visit',
@@ -84,16 +78,6 @@ export const Navbar: React.FC = () => {
         { title: 'Getting Here', path: '/visit' },
         { title: 'Dining & Stay', path: '/visit/dining-stay' },
         { title: 'Parking & Accessibility', path: '/visit/parking' },
-      ],
-    },
-    {
-      title: 'Discover Vizag',
-      path: '/discover',
-      dropdown: 'discover',
-      items: [
-        { title: 'Local Attractions', path: '/discover' },
-        { title: 'Shopping', path: '/discover/shopping' },
-        { title: 'Short Trips', path: '/discover/trips' },
       ],
     },
     {
