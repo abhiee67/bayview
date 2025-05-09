@@ -16,8 +16,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, fullPage = fal
     // Setup smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Scroll to top on page navigation
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Force scroll to top on page navigation
+    window.scrollTo(0, 0);
     
     return () => {
       // Cleanup

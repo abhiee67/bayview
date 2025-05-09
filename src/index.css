@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -95,6 +96,7 @@
     @apply bg-cream text-maroon font-sans;
     height: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -177,4 +179,9 @@ html {
 .calendar-container {
   position: relative;
   min-height: 400px;
+}
+
+/* Force immediate scroll-to-top behavior */
+.scroll-top {
+  scroll-behavior: instant; /* For browsers that support it */
 }

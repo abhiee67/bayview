@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -8,6 +8,7 @@ export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +31,13 @@ export const Navbar: React.FC = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
     setActiveDropdown(null);
+  };
+
+  // Handle navigation with scroll to top behavior
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+    closeMenu();
   };
 
   const navLinks = [
@@ -97,11 +105,11 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center" onClick={closeMenu}>
-            <div className="text-maroon text-2xl md:text-3xl font-serif font-bold">
+          <div className="flex items-center" onClick={() => handleNavigation('/')}>
+            <div className="text-maroon text-2xl md:text-3xl font-serif font-bold cursor-pointer">
               Bayview<span className="text-gold">.</span>
             </div>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
@@ -122,12 +130,12 @@ export const Navbar: React.FC = () => {
                     </button>
                   </div>
                 ) : (
-                  <Link
-                    to={link.path}
-                    className="text-sm font-medium text-maroon hover:text-gold transition-colors"
+                  <div
+                    className="text-sm font-medium text-maroon hover:text-gold transition-colors cursor-pointer"
+                    onClick={() => handleNavigation(link.path)}
                   >
                     {link.title}
-                  </Link>
+                  </div>
                 )}
 
                 {/* Dropdown Menu */}
@@ -141,14 +149,13 @@ export const Navbar: React.FC = () => {
                     )}
                   >
                     {link.items.map((item) => (
-                      <Link
+                      <div
                         key={item.path}
-                        to={item.path}
-                        className="block px-5 py-2 text-sm font-medium text-maroon hover:bg-apricot hover:text-maroon transition-colors"
-                        onClick={closeMenu}
+                        className="block px-5 py-2 text-sm font-medium text-maroon hover:bg-apricot hover:text-maroon transition-colors cursor-pointer"
+                        onClick={() => handleNavigation(item.path)}
                       >
                         {item.title}
-                      </Link>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -197,26 +204,24 @@ export const Navbar: React.FC = () => {
                   {activeDropdown === link.dropdown && (
                     <div className="ml-4 mt-1 space-y-1 mb-2">
                       {link.items!.map((item) => (
-                        <Link
+                        <div
                           key={item.path}
-                          to={item.path}
-                          className="block py-2 text-maroon hover:text-gold transition-colors"
-                          onClick={closeMenu}
+                          className="block py-2 text-maroon hover:text-gold transition-colors cursor-pointer"
+                          onClick={() => handleNavigation(item.path)}
                         >
                           {item.title}
-                        </Link>
+                        </div>
                       ))}
                     </div>
                   )}
                 </>
               ) : (
-                <Link
-                  to={link.path}
-                  className="block text-lg font-medium text-maroon hover:text-gold transition-colors py-2"
-                  onClick={closeMenu}
+                <div
+                  className="block text-lg font-medium text-maroon hover:text-gold transition-colors py-2 cursor-pointer"
+                  onClick={() => handleNavigation(link.path)}
                 >
                   {link.title}
-                </Link>
+                </div>
               )}
             </div>
           ))}
