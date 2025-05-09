@@ -29,9 +29,11 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, fullPage = fal
   }
   
   return (
-    <div className="flex flex-col min-h-screen snap-y snap-mandatory overflow-y-auto">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow pt-20">{children}</main>
+      <main className="flex-grow pt-[var(--navbar-height)]">
+        {children}
+      </main>
       <Footer />
     </div>
   );

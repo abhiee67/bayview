@@ -89,6 +89,7 @@
     scroll-behavior: smooth;
     height: 100%;
     overscroll-behavior: none;
+    scroll-snap-type: y proximity;
   }
 
   body {
@@ -126,7 +127,7 @@
     position: relative;
   }
   
-  /* New styles for full-page scroll snap */
+  /* Styles for full-page scroll snap */
   .snap-section {
     height: 100vh;
     width: 100%;
@@ -135,10 +136,40 @@
     position: relative;
     overflow: hidden;
   }
+  
+  /* Regular section with snap */
+  .snap-section-regular {
+    min-height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    padding-top: var(--navbar-height);
+    position: relative;
+  }
+}
+
+/* Navbar styling */
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: all 0.3s ease;
 }
 
 /* Global styles for snap scrolling */
 html {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+}
+
+/* Standard page content padding to account for fixed navbar */
+.page-content {
+  padding-top: var(--navbar-height);
+}
+
+/* Ensure sections take up at least full viewport height */
+.vh-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
 }

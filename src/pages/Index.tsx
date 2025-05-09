@@ -23,7 +23,7 @@ const Index = () => {
   };
 
   return (
-    <MainLayout>
+    <MainLayout fullPage>
       <section className="snap-section">
         <Hero />
       </section>
