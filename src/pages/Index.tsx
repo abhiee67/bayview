@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MainLayout } from '../layouts/MainLayout';
 import { Hero } from '../components/home/Hero';
 import { USPs } from '../components/home/USPs';
@@ -24,14 +24,18 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <Hero />
-      
-      <section id="section-1" className="py-16">
-        <USPs />
+      <section className="snap-section">
+        <Hero />
       </section>
       
-      <section id="section-2" className="py-16 bg-cream/30">
-        <div className="container mx-auto px-4">
+      <section id="section-1" className="snap-section">
+        <div className="h-full flex items-center">
+          <USPs />
+        </div>
+      </section>
+      
+      <section id="section-2" className="snap-section bg-cream/30">
+        <div className="container mx-auto px-4 h-full flex flex-col justify-center">
           <div className="flex items-center justify-center gap-3 mb-8">
             <Calendar className="h-8 w-8 text-maroon" />
             <SectionHeading 
@@ -72,7 +76,7 @@ const Index = () => {
             shows available dates.
           </p>
           
-          <div className="calendar-container h-[500px] overflow-y-auto">
+          <div className="calendar-container h-[400px] overflow-y-auto">
             {selectedHall === 'hall1' && (
               <div id="hall1-calendar">
                 <HallCalendar hallName="Hall 1" spreadsheetUrl={hallUrls.hall1} />
@@ -92,24 +96,34 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="section-3" className="py-16">
-        <AboutPreview />
+      <section id="section-3" className="snap-section">
+        <div className="h-full flex items-center">
+          <AboutPreview />
+        </div>
       </section>
       
-      <section id="section-4" className="py-16">
-        <UpcomingEvents />
+      <section id="section-4" className="snap-section">
+        <div className="h-full flex items-center">
+          <UpcomingEvents />
+        </div>
       </section>
       
-      <section id="section-5" className="py-16">
-        <VirtualTour />
+      <section id="section-5" className="snap-section">
+        <div className="h-full flex items-center">
+          <VirtualTour />
+        </div>
       </section>
       
-      <section id="section-6" className="py-16">
-        <Testimonials />
+      <section id="section-6" className="snap-section">
+        <div className="h-full flex items-center">
+          <Testimonials />
+        </div>
       </section>
       
-      <section id="section-7" className="py-16">
-        <CallToAction />
+      <section id="section-7" className="snap-section">
+        <div className="h-full flex items-center">
+          <CallToAction />
+        </div>
       </section>
     </MainLayout>
   );

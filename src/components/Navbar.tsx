@@ -61,16 +61,6 @@ export const Navbar: React.FC = () => {
       ],
     },
     {
-      title: 'Venue Availability',
-      path: '/venue-availability',
-      dropdown: 'venue',
-      items: [
-        { title: 'Hall 1', path: '/venue-availability/hall-1' },
-        { title: 'Hall 2', path: '/venue-availability/hall-2' },
-        { title: 'Hall 3', path: '/venue-availability/hall-3' },
-      ],
-    },
-    {
       title: 'Events',
       path: '/events',
       dropdown: 'events',
@@ -88,16 +78,6 @@ export const Navbar: React.FC = () => {
         { title: 'Getting Here', path: '/visit' },
         { title: 'Dining & Stay', path: '/visit/dining-stay' },
         { title: 'Parking & Accessibility', path: '/visit/parking' },
-      ],
-    },
-    {
-      title: 'Discover Vizag',
-      path: '/discover',
-      dropdown: 'discover',
-      items: [
-        { title: 'Local Attractions', path: '/discover/attractions' },
-        { title: 'Shopping', path: '/discover/shopping' },
-        { title: 'Day Trips & Short Stays', path: '/discover/trips' },
       ],
     },
     {
