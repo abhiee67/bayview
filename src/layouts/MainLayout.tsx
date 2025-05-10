@@ -27,7 +27,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children, fullPage = fal
   
   if (fullPage) {
     return (
-      <div className="flex flex-col min-h-screen snap-y snap-mandatory overflow-y-auto">
+      <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">{children}</main>
       </div>
